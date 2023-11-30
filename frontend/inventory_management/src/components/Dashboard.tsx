@@ -57,6 +57,13 @@ const VEHICLE_TABLE_ROWS = [
     paint_code: "12",
     year: "22",
   },
+  {
+    vin: "John Michael",
+    owned_by: "JohnMichael@gmail.com",
+    make_and_model: "7984147792",
+    paint_code: "12",
+    year: "22",
+  },
 ];
 
 const REPAIR_TABLE_HEAD = [
