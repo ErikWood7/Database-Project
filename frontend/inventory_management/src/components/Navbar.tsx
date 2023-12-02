@@ -47,8 +47,8 @@ function Navbar({ loginInfo }: { loginInfo: UserLogin | null }) {
                     <div className="flex-shrink-0">
                       <Link to='/'>
                       <img
-                        className="h-8 w-18"
-                        src="https://i.ibb.co/QY73W0F/connections-logo.png"
+                        className="h-28 w-auto"
+                        src="https://i.ibb.co/4TbbVBw/Can-1-removebg-preview.png"
                         alt="Connections"
                       />
                       </Link>
@@ -74,6 +74,7 @@ function Navbar({ loginInfo }: { loginInfo: UserLogin | null }) {
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
                                   <a
+                                    onClick={() => {localStorage.clear()}}
                                     href={item.href}
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',

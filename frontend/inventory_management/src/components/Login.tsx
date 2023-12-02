@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { postToAPI } from "../utils/postToAPI.ts";
 
 function Login({ setLoginInfo }: { setLoginInfo: React.Dispatch<React.SetStateAction<UserLogin | null>> }) {
     const [userName, setUserName] = useState<string | undefined>(undefined);
@@ -10,28 +11,40 @@ function Login({ setLoginInfo }: { setLoginInfo: React.Dispatch<React.SetStateAc
         e.preventDefault();
         console.log(userName);
         console.log(userPassword);
-        setLoginInfo({
-            name: userName,
-            userName: userName,
-            photo: userPassword,
-        });
-        nav('/')
+      postToAPI("login/", {"username": userName, "password": userPassword}).then(data => {
+            console.log(data)
+            if (data == "Success"){
+                setLoginInfo({
+                    name: userName,
+                    userName: userName,
+                    photo: userPassword,
+                });
+            localStorage.setItem('loginInfo', JSON.stringify({
+                    name: userName,
+                    userName: userName,
+                    photo: userPassword,
+                }))
+                nav('/')
+            } else{
+                    alert(data)
+                }
+          })
     }
     return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
-                        className="mx-auto h-10 w-auto"
-                        src="https://i.ibb.co/b5rX393/connections-logo-removebg-preview.png"
-                        alt="Connections"
+                        className="mx-auto h-auto w-auto relative bottom-20"
+                        src="https://i.ibb.co/4TbbVBw/Can-1-removebg-preview.png"
+                        alt="Inventory Management"
                     />
-                    <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                    <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 relative bottom-40">
                         Sign in to your account
                     </h2>
                 </div>
 
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm relative bottom-40">
                     <form className="space-y-6" onSubmit={handleSubmit}>
 
                         {/* Email */}

@@ -16,7 +16,7 @@ python -m pip install -r requirements.txt
 python api.py
 ```
 ## Database
-- Download: [a link](https://dev.mysql.com/downloads/workbench/)
+- [Download](https://dev.mysql.com/downloads/workbench/)
 - Complete installation
 - Open the sql file in database folder and run
 

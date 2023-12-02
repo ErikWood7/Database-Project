@@ -1,7 +1,7 @@
 ;import { Card, Typography } from "@material-tailwind/react";
  
  
-export default function Table({ TABLE_HEAD, TABLE_ROWS }: {TABLE_HEAD: any, TABLE_ROWS: any}) {
+export default function Table({ TABLE_HEAD, TABLE_ROWS, openModal, HEAD }: {TABLE_HEAD: any, TABLE_ROWS: any, openModal: any, HEAD: string}) {
   let table_data;
   return (
     <Card className="h-full w-full p-2">
@@ -23,9 +23,9 @@ export default function Table({ TABLE_HEAD, TABLE_ROWS }: {TABLE_HEAD: any, TABL
         </thead>
         <tbody>
           {TABLE_ROWS.map((el: any, idx: any) => {
-            table_data = TABLE_HEAD.map((head:string) => {
+            table_data = TABLE_HEAD.map((head:string, jdx:any) => {
               if (head == "") return 
-              return <td className="p-4">
+              return <td className="p-4" key={jdx+idx}>
                 <Typography variant="small" color="blue-gray" className="font-normal">
                   {el[head.toLowerCase().replaceAll(" ", "_")]}
                 </Typography>
@@ -35,7 +35,7 @@ export default function Table({ TABLE_HEAD, TABLE_ROWS }: {TABLE_HEAD: any, TABL
             return <tr key={idx} className="even:bg-blue-gray-50/50"> 
               {table_data}
               <td className="p-4">
-                <Typography as="a" href="#" variant="small" color="blue-gray" className="font-medium">
+                <Typography onClick={()=>{openModal(HEAD)}} variant="small" color="blue-gray" className="font-medium hover:cursor-pointer">
                   Edit
                 </Typography>
               </td>

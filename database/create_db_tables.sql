@@ -47,6 +47,8 @@ CREATE TABLE IF NOT EXISTS Users (
     password VARCHAR(100)
 );
 
+insert into `Users` (username, password) VALUES ('kchauhan@kent.edu', 'test');
+
 Insert into `Customer` (Customer_email, First_Name, Last_Name, Phone_Num) VALUES (
 "ewood@kent.edu",
 "Erik",
@@ -65,8 +67,6 @@ Insert into `Repair` (VIN, Repair_detail, Note) VALUES (
 "1H1AL23467I234537", 
 "Puncture", 
 "Tire replacement");
-
-SELECT * FROM `Repair`;
 
 Insert into `Part` (Repair_id, Part_detail, OrderStatus) VALUES (
 1, 

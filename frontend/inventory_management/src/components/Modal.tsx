@@ -46,7 +46,7 @@ export default function Modal({ open, setOpen, TABLE_HEAD, TABLE_ROWS, HEADING, 
                 <h1 className="text-xl font-bold pl-3 ml-3 pt-3 mt-3">{HEADING}</h1>
                 <h1 className="text-xl font-bold pr-6 ml-3 pt-3 mt-3 text-[#5156c0] absolute right-0 hover:cursor-pointer" onClick={addRow}>Add</h1>
                 </div>
-                <EditTable TABLE_HEAD={TABLE_HEAD} TABLE_ROWS={TABLE_ROWS} HEADING={HEADING} setSelectedTableRow={setSelectedTableRow} />
+                <EditTable TABLE_HEAD={TABLE_HEAD} TABLE_ROWS={TABLE_ROWS} HEADING={HEADING} setSelectedTableRow={setSelectedTableRow} setOpen={setOpen} />
                 
               </Dialog.Panel>
             </Transition.Child>
