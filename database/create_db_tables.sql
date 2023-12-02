@@ -73,3 +73,6 @@ Insert into `Part` (Repair_id, Part_detail, OrderStatus) VALUES (
 "Spark Plug for replacement", 
 "Received");
 
+SELECT * FROM Repair WHERE VIN NOT IN (SELECT VIN FROM Vehicle);
+DELETE FROM Part WHERE Part_id = 1;
+SELECT * FROM Part;
