@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS inventory_management;
-USE inventory_management;
+CREATE DATABASE IF NOT EXISTS kchauhan;
+USE kchauhan;
 
 CREATE TABLE IF NOT EXISTS Customer (
 	Customer_email varchar(255) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS Part (
 	Part_id int NOT NULL AUTO_INCREMENT,
     Part_detail varchar(255) NOT NULL,
     OrderStatus varchar(255) NOT NULL,
-    Repair_id int REFERENCES Vehicle(VIN)
+    Repair_id int REFERENCES Repair(Repair_id)
 	   ON DELETE CASCADE
        ON UPDATE CASCADE,
     PRIMARY KEY (Part_id)
