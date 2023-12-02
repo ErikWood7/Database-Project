@@ -1,4 +1,4 @@
-;import { Card, Typography } from "@material-tailwind/react";
+import { Card, Typography } from "@material-tailwind/react";
 import { useState } from "react";
 import { postToAPI } from "../utils/postToAPI.ts";
  
@@ -46,9 +46,9 @@ export default function EditTable({ TABLE_HEAD, TABLE_ROWS, HEADING, setSelected
                       }
                   url_to_post = 'insertRepair/';
               }
-          console.log(params_to_post)
-          postToAPI(url_to_post, params_to_post).then(data => {
-                  console.log(data);
+          // console.log(params_to_post)
+          postToAPI(url_to_post, params_to_post).then(() => {
+                  // console.log(data);
                   let tempEl = TABLE_ROWS[row_idx]
                   Object.keys(tempEl).map((key) => { tempEl[key] = new_el[key]; })
                   TABLE_ROWS[row_idx] = tempEl;
@@ -56,8 +56,8 @@ export default function EditTable({ TABLE_HEAD, TABLE_ROWS, HEADING, setSelected
                   setNewElement(new_el)
                   setOpen(false);
                   window.location.reload(); 
-              }).catch(data => {
-                  console.log(data);
+              }).catch(() => {
+                  // console.log(data);
                   let tempEl = TABLE_ROWS[row_idx]
                   Object.keys(tempEl).map((key) => { tempEl[key] = new_el[key]; })
                   TABLE_ROWS[row_idx] = tempEl;
@@ -106,10 +106,10 @@ export default function EditTable({ TABLE_HEAD, TABLE_ROWS, HEADING, setSelected
                   }
               url_to_post = 'updateRepair/';
           }
-      console.log(params_to_post)
+      // console.log(params_to_post)
       postToAPI(url_to_post, params_to_post).then(data => {
-              console.log("Update");
-              console.log(data);
+              // console.log("Update");
+              // console.log(data);
               setOpen(false);
               /*
               let tempEl = TABLE_ROWS[row_idx]
@@ -122,7 +122,7 @@ export default function EditTable({ TABLE_HEAD, TABLE_ROWS, HEADING, setSelected
               */
               window.location.reload(); 
           }).catch(data => {
-              console.log(data);
+              // console.log(data);
               setOpen(false);
               /*
               let tempEl = TABLE_ROWS[row_idx]
@@ -146,7 +146,7 @@ export default function EditTable({ TABLE_HEAD, TABLE_ROWS, HEADING, setSelected
   const changeElementToAdd = (val: string, key: string) => {
       setNewElement((prevElement: any) => {
               prevElement[key] = val
-              console.log(prevElement)
+              // console.log(prevElement)
               return prevElement;
           })
       }
@@ -176,7 +176,7 @@ export default function EditTable({ TABLE_HEAD, TABLE_ROWS, HEADING, setSelected
               url_to_post = 'deleteRepair/';
           }
       postToAPI(url_to_post, params_to_post).then(data => {
-              console.log(data)
+              // console.log(data)
               TABLE_ROWS.splice(row_idx, 1);
               setSelectedTableRow([...TABLE_ROWS])
               setOpen(false);

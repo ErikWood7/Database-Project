@@ -9,10 +9,10 @@ function Login({ setLoginInfo }: { setLoginInfo: React.Dispatch<React.SetStateAc
 
     const handleSubmit = async (e: any): Promise<undefined> => {
         e.preventDefault();
-        console.log(userName);
-        console.log(userPassword);
+        // console.log(userName);
+        // console.log(userPassword);
       postToAPI("login/", {"username": userName, "password": userPassword}).then(data => {
-            console.log(data)
+            // console.log(data)
             if (data == "Success"){
                 setLoginInfo({
                     name: userName,

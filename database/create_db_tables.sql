@@ -72,3 +72,4 @@ Insert into `Part` (Repair_id, Part_detail, OrderStatus) VALUES (
 1, 
 "Spark Plug for replacement", 
 "Received");
+

@@ -43,25 +43,28 @@ function Dashboard() {
           fetchFromAPI("getConsumerTableRows/").then((data: any)=> {
                   data = Object.values(data)
                   set_CONSUMER_TABLE_ROWS(data);
-                  console.log(data)
+                  // console.log(data)
                   })
 
           fetchFromAPI("getVehicleTableRows/").then((data: any)=> {
                   data = Object.values(data)
                   set_VEHICLE_TABLE_ROWS(data);
-                  console.log(data)})
+                  //console.log(data)
+                  })
 
           fetchFromAPI("getRepairTableRows/").then((data: any)=> {
                   data = Object.values(data)
                   set_REPAIR_TABLE_ROWS(data);
                   console.log("Repair data")
-                  console.log(data)})
+                  console.log(data)
+                  })
 
           fetchFromAPI("getPartTableRows/").then((data: any)=> {
                   data = Object.values(data)
                   set_PART_TABLE_ROWS(data);
                   setLoading(false)
-                  console.log(data)})
+                  // console.log(data)
+                  })
 
       }, [])
 

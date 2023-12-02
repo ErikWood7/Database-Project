@@ -2,6 +2,8 @@
  
  
 export default function Table({ TABLE_HEAD, TABLE_ROWS, openModal, HEAD }: {TABLE_HEAD: any, TABLE_ROWS: any, openModal: any, HEAD: string}) {
+  console.log(TABLE_HEAD)
+  console.log(TABLE_ROWS)
   let table_data;
   return (
     <Card className="h-full w-full p-2">

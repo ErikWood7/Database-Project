@@ -148,19 +148,19 @@ def getPartTableRows():
         data = c.fetchall()
         final_data = {}
         for idx, datum in enumerate(data):
-            print(datum)
+            # print(datum)
             part_data = {h: datum[idx] for idx, h in enumerate(headers)}
 
             repair_data = c.execute(f"SELECT VIN, Repair_detail FROM Repair WHERE Repair_id = {part_data['Repair_id']}")
             temp_data = c.fetchone()
             vin = temp_data[0]
             repair_detail = temp_data[1]
-            print(vin)
+            # print(vin)
             car_data = c.execute(f"SELECT Customer_email, Make, Model FROM Vehicle WHERE VIN = '{vin}'")
             car_data = c.fetchone()
             make_and_model = ' '.join(list(car_data)[1:])
             owner = car_data[0]
-            print(car_data)
+            # print(car_data)
             final_data[idx] = {
                     "part_id": part_data["Part_id"],
                     "repair_id": part_data["Repair_id"],
@@ -171,11 +171,11 @@ def getPartTableRows():
                     "car": make_and_model,
                     "customer": owner
                            }
-        print(final_data)
+        # print(final_data)
         return final_data
 
     except Exception as e:
-        print('exception')
+        # print('exception')
         return str(e)
 
 '''
@@ -222,7 +222,7 @@ def get_consumers():
         c, conn = connection()
         headers = ['customer_email', 'first_name', 'last_name', 'phone_num']
         header_str = ', '.join(headers)
-        print(header_str)
+        # print(header_str)
         if request.method == "POST":
 
             user = request.json.get('customer_email')
@@ -248,7 +248,7 @@ def updateConsumer():
         headers = ['customer_email', 'first_name', 'last_name', 'phone_num']
         header_str = ', '.join(headers)
         if request.method == "POST":
-            print(request.json)
+            # print(request.json)
             customer_email = request.json.get('customer_email')
             name = request.json.get('name')
             if name:
@@ -293,7 +293,7 @@ def deleteConsumer():
     try:
         c, conn = connection()
         if request.method == "POST":
-            print(request.json)
+            # print(request.json)
             user = request.json.get('customer_email')
             if user:
                 c.execute(f"DELETE FROM Customer WHERE Customer_email = \"{user}\"")
@@ -384,14 +384,14 @@ def updateVehicle():
         headers = ["VIN", "Customer_email", "Year", "Make", "Model", "Paint_Code"]
         header_str = ', '.join(headers)
         if request.method == "POST":
-            print(request.json)
+            # print(request.json)
             vin = request.json.get('vin')
             customer_email = request.json.get('customer_email')
             year = request.json.get('year')
             make_and_model = request.json.get('make_and_model')
             if make_and_model:
                 make_and_model = make_and_model.split(' ')
-                print(make_and_model)
+                # print(make_and_model)
                 make = make_and_model[0]
                 if len(make_and_model) > 1:
                     model = make_and_model[1]
@@ -401,8 +401,8 @@ def updateVehicle():
                 make = request.json.get('make')
                 model = request.json.get('model')
 
-            print(make)
-            print(model)
+            # print(make)
+            # print(model)
             paint_code = request.json.get('paint_code')
             if not vin: return "Please provide vehicle id"
             if customer_email:
@@ -435,13 +435,13 @@ def updateVehicle():
                                     VIN = "{vin}"
                                     '''
                 c.execute(update_statement)
-            print("Before Commit")
+            # print("Before Commit")
             conn.commit()
             return "Success"
         else:
             return "Fail"
     except Exception as e:
-        print(str(e))
+        # print(str(e))
         return str(e)
 
 # Delete
@@ -505,17 +505,17 @@ def get_repairs():
 
             user = request.json.get('customer_email')
             if user:
-                print(user)
+                # print(user)
                 data = c.execute(f"SELECT VIN FROM Vehicle WHERE Customer_email = \"{user}\"")
                 data = c.fetchall()
                 vins = [datum[0] for datum in data]
-                print(vins)
+                # print(vins)
                 final_data = []
                 for vin in vins:
                     data = c.execute(f"SELECT {header_str} FROM Repair WHERE VIN = \"{vin}\"")
                     data = c.fetchall()
                     for datum in data: final_data.append(datum)
-                print(final_data)
+                # print(final_data)
                 if len(final_data):
                     return {id: {h: datum[idx] for idx, h in enumerate(headers)} for id, datum in enumerate(data)}
 
@@ -523,7 +523,7 @@ def get_repairs():
             if vin: 
                 data = c.execute(f"SELECT {header_str} FROM Repair WHERE VIN = \"{vin}\"")
                 data = c.fetchall()
-                print(data)
+                # print(data)
                 if len(data) == 0: 
                     return "Wrong id"
                 return {id: {h: datum[idx] for idx, h in enumerate(headers)} for id, datum in enumerate(data)}
@@ -532,7 +532,7 @@ def get_repairs():
             if repair_id:
                 data = c.execute(f"SELECT {header_str} FROM Repair WHERE Repair_id = \"{repair_id}\"")
                 data = c.fetchone()
-                print(data)
+                # print(data)
                 if len(data) == 0:
                     return "Wrond id"
 
@@ -542,7 +542,7 @@ def get_repairs():
         else: 
             data = c.execute(f"SELECT {header_str} FROM Repair")
             data = c.fetchall()
-            print(data)
+            # print(data)
             return {id: {h: datum[idx] for idx, h in enumerate(headers)} for id, datum in enumerate(data)}
 
     except Exception as e:
@@ -667,7 +667,7 @@ def get_parts():
                         data = c.execute(f"SELECT {header_str} FROM Part WHERE Repair_id = \"{repair_id}\"")
                         data = c.fetchall()
                         for datum in data: final_data.append(datum)
-                print(final_data)
+                # print(final_data)
                 if len(final_data):
                     return {id: {h: datum[idx] for idx, h in enumerate(headers)} for id, datum in enumerate(data)}
 
@@ -680,14 +680,14 @@ def get_parts():
                 data = c.execute(f"SELECT {header_str} FROM Part WHERE Repair_id = \"{repair_id}\"")
                 data = c.fetchall()
                 for datum in data: final_data.append(datum)
-            print(final_data)
+            # print(final_data)
             if len(final_data):
                 return {id: {h: datum[idx] for idx, h in enumerate(headers)} for id, datum in enumerate(data)}
             repair_id = request.json.get('repair_id')
             if repair_id:
                 data = c.execute(f"SELECT {header_str} FROM Part WHERE Repair_id = \"{repair_id}\"")
                 data = c.fetchall()
-                print(data)
+                # print(data)
                 if len(data) == 0: return "Wrong id"
                 return {id: {h: datum[idx] for idx, h in enumerate(headers)} for id, datum in enumerate(data)}
 
@@ -695,7 +695,7 @@ def get_parts():
             if part_id:
                 data = c.execute(f"SELECT {header_str} FROM Part WHERE Part_id = \"{part_id}\"")
                 data = c.fetchone()
-                print(data)
+                # print(data)
                 if len(data) == 0:
                     return "Wrond id"
 
@@ -703,7 +703,7 @@ def get_parts():
 
         data = c.execute(f"SELECT {header_str} FROM Part")
         data = c.fetchall()
-        print(data)
+        # print(data)
         return {id: {h: datum[idx] for idx, h in enumerate(headers)} for id, datum in enumerate(data)}
 
     except Exception as e:
@@ -741,7 +741,7 @@ def updatePart():
                                     part_id = "{part_id}"
                                     '''
                 c.execute(update_statement)
-            print(request.json)
+            # print(request.json)
             conn.commit()
             return "Success"
         else:
@@ -795,4 +795,4 @@ def deletePart():
            
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
