@@ -68,6 +68,7 @@ UNLOCK TABLES;
 LOCK TABLES `part` WRITE;
 /*!40000 ALTER TABLE `part` DISABLE KEYS */;
 INSERT INTO `part` VALUES (3,'Spark Plug for replacement','Received',1),(5,'Radiator ','Ordered',1);
+INSERT INTO `customer` VALUES ('aangell@kent.edu','Austin','LNU','1212121124'),('ewood@kent.edu','Erik','Wook','2093314124'),('jfelger@kent.edu','Jeffrey','Felger','901231231'),('kchauhan@kent.edu','Kapil','Chauhan','798134982');
 /*!40000 ALTER TABLE `part` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,6 +79,8 @@ UNLOCK TABLES;
 LOCK TABLES `repair` WRITE;
 /*!40000 ALTER TABLE `repair` DISABLE KEYS */;
 INSERT INTO `repair` VALUES (1,'Spark Plug Replacement','Need to update Price','8H1IK12829L123191'),(2,'Radiator Change','Needs to be ordered','8H1IK12829L123191');
+INSERT INTO `part` VALUES (3,'Spark Plug for replacement','Received',1),(5,'Radiator ','Ordered',1);
+INSERT INTO `customer` VALUES ('aangell@kent.edu','Austin','LNU','1212121124'),('ewood@kent.edu','Erik','Wook','2093314124'),('jfelger@kent.edu','Jeffrey','Felger','901231231'),('kchauhan@kent.edu','Kapil','Chauhan','798134982');
 /*!40000 ALTER TABLE `repair` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,6 +91,9 @@ UNLOCK TABLES;
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES (1,'root','admin'),(2,'kchauhan@kent.edu','test');
+INSERT INTO `repair` VALUES (1,'Spark Plug Replacement','Need to update Price','8H1IK12829L123191'),(2,'Radiator Change','Needs to be ordered','8H1IK12829L123191');
+INSERT INTO `part` VALUES (3,'Spark Plug for replacement','Received',1),(5,'Radiator ','Ordered',1);
+INSERT INTO `customer` VALUES ('aangell@kent.edu','Austin','LNU','1212121124'),('ewood@kent.edu','Erik','Wook','2093314124'),('jfelger@kent.edu','Jeffrey','Felger','901231231'),('kchauhan@kent.edu','Kapil','Chauhan','798134982');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +103,11 @@ UNLOCK TABLES;
 
 LOCK TABLES `vehicle` WRITE;
 /*!40000 ALTER TABLE `vehicle` DISABLE KEYS */;
-INSERT INTO `vehicle` VALUES ('2G4BK23114P13123',2020,'Chevrolet','Corvett','KB21/U9','aangell@kent.edu'),('4Y1SL65848Z411439',2013,'Ford','Mustang','L041/K2','kchauhan@kent.edu'),('7K1IK12829L123111',2002,'Hyndai','Verna','LA7Y/K2','jfelger@kent.edu'),('8H1IK12829L123191',2010,'Ford','Escape','KB21/U9','ewood@kent.edu');
+INSERT INTO `Vehicle` VALUES ('2G4BK23114P13123',2020,'Chevrolet','Corvett','KB21/U9','aangell@kent.edu'),('4Y1SL65848Z411439',2013,'Ford','Mustang','L041/K2','kchauhan@kent.edu'),('7K1IK12829L123111',2002,'Hyndai','Verna','LA7Y/K2','jfelger@kent.edu'),('8H1IK12829L123191',2010,'Ford','Escape','KB21/U9','ewood@kent.edu');
+INSERT INTO `Users` VALUES (1,'root','admin'),(2,'kchauhan@kent.edu','test');
+INSERT INTO `Repair` VALUES (1,'Spark Plug Replacement','Need to update Price','8H1IK12829L123191'),(2,'Radiator Change','Needs to be ordered','8H1IK12829L123191');
+INSERT INTO `Part` VALUES (3,'Spark Plug for replacement','Received',1),(5,'Radiator ','Ordered',1);
+INSERT INTO `Customer` VALUES ('aangell@kent.edu','Austin','LNU','1212121124'),('ewood@kent.edu','Erik','Wook','2093314124'),('jfelger@kent.edu','Jeffrey','Felger','901231231'),('kchauhan@kent.edu','Kapil','Chauhan','798134982');
 /*!40000 ALTER TABLE `vehicle` ENABLE KEYS */;
 UNLOCK TABLES;
 
