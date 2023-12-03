@@ -1,27 +1,23 @@
-#!/usr/bin/env python
 import os
 import time
 from flask import Flask, abort, request, jsonify, g, url_for
-from flask_httpauth import HTTPBasicAuth
-import jwt
-from werkzeug.security import generate_password_hash, check_password_hash
-from flaskext.mysql import MySQL
 from flask_cors import CORS
 
 
 # initialization
 app = Flask(__name__)
 CORS(app)
-app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy dog'
-db = MySQL()
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'admin'
-app.config['MYSQL_DATABASE_DB'] = 'inventory_management'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-db.init_app(app)
 
 import mysql.connector
 
+def connection():
+    conn = mysql.connector.connect(host="dbdev.cs.kent.edu",
+                           user = "kchauhan",
+                           passwd = "kq2uK5yF",
+                           db = "kchauhan")
+    c = conn.cursor()
+
+    return c, conn
 def connection():
     conn = mysql.connector.connect(host="localhost",
                            user = "root",

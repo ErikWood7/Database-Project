@@ -13,7 +13,7 @@ const navigation = [
   { name: 'Add Customer', href: '/'},
 ]
 const userNavigation = [
-  { name: 'Sign out', href: '/login' },
+  { name: 'Sign out', href: '/' },
 ]
 
 function classNames(...classes: any[]) {

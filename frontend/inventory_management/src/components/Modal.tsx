@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { EditTable } from './'
 
-export default function Modal({ open, setOpen, TABLE_HEAD, TABLE_ROWS, HEADING, setSelectedTableRow }: { open:any, setOpen: any, TABLE_HEAD: any, TABLE_ROWS: any, HEADING: any, setSelectedTableRow: any }) {
+export default function Modal({ open, setOpen, TABLE_HEAD, TABLE_ROWS, HEADING, setSelectedTableRow, allConsumers, allVehicles, allVINS, allRepairs  }: { open:any, setOpen: any, TABLE_HEAD: any, TABLE_ROWS: any, HEADING: any, setSelectedTableRow: any, allConsumers: any, allVehicles: any, allVINS: any, allRepairs: any  }) {
 
   const addRow = () => {
         let new_el: any = {};
@@ -46,7 +46,7 @@ export default function Modal({ open, setOpen, TABLE_HEAD, TABLE_ROWS, HEADING, 
                 <h1 className="text-xl font-bold pl-3 ml-3 pt-3 mt-3">{HEADING}</h1>
                 <h1 className="text-xl font-bold pr-6 ml-3 pt-3 mt-3 text-[#5156c0] absolute right-0 hover:cursor-pointer" onClick={addRow}>Add</h1>
                 </div>
-                <EditTable TABLE_HEAD={TABLE_HEAD} TABLE_ROWS={TABLE_ROWS} HEADING={HEADING} setSelectedTableRow={setSelectedTableRow} setOpen={setOpen} />
+                <EditTable TABLE_HEAD={TABLE_HEAD} TABLE_ROWS={TABLE_ROWS} HEADING={HEADING} setSelectedTableRow={setSelectedTableRow} setOpen={setOpen} allConsumers= {allConsumers} allVehicles= {allVehicles} allVINS= {allVINS} allRepairs= {allRepairs} />
                 
               </Dialog.Panel>
             </Transition.Child>

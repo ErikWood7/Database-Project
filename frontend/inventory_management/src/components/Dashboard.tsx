@@ -34,8 +34,15 @@ function Dashboard() {
   const [open, setOpen] = useState(false)
 
   const [CONSUMER_TABLE_ROWS, set_CONSUMER_TABLE_ROWS] = useState<any>({})
+  const [allConsumers, setAllConsumers] = useState<string[]>()
+
   const [VEHICLE_TABLE_ROWS, set_VEHICLE_TABLE_ROWS] = useState<any>({})
+  const [allVehicles, setAllVehicles] = useState<string[]>()
+  const [allVINS, setAllVINS] = useState<string[]>()
+
   const [REPAIR_TABLE_ROWS, set_REPAIR_TABLE_ROWS] = useState<any>({})
+  const [allRepairs, setAllRepairs] = useState<string[]>()
+
   const [PART_TABLE_ROWS, set_PART_TABLE_ROWS] = useState<any>({})
 
   const [loading, setLoading] = useState(true)
@@ -43,18 +50,22 @@ function Dashboard() {
           fetchFromAPI("getConsumerTableRows/").then((data: any)=> {
                   data = Object.values(data)
                   set_CONSUMER_TABLE_ROWS(data);
+                  setAllConsumers(data.map((datum: any) => (datum['email'].toString())));
                   // console.log(data)
                   })
 
           fetchFromAPI("getVehicleTableRows/").then((data: any)=> {
                   data = Object.values(data)
                   set_VEHICLE_TABLE_ROWS(data);
+                  setAllVehicles(data.map((datum: any) => (datum['make_and_model'].toString())));
+                  setAllVINS(data.map((datum: any) => (datum['vin'].toString())));
                   //console.log(data)
                   })
 
           fetchFromAPI("getRepairTableRows/").then((data: any)=> {
                   data = Object.values(data)
                   set_REPAIR_TABLE_ROWS(data);
+                  setAllRepairs(data.map((datum: any) => (datum['repair_id'].toString())));
                   console.log("Repair data")
                   console.log(data)
                   })
@@ -102,7 +113,7 @@ function Dashboard() {
       }
   return (
     <div className="grid grid-rows-3 overflow-hidden">
-        <Modal open={open} setOpen={setOpen} TABLE_HEAD={selectedTableHead} TABLE_ROWS={selectedTableRow} HEADING={heading} setSelectedTableRow={setSelectedTableRow} />
+        <Modal open={open} setOpen={setOpen} TABLE_HEAD={selectedTableHead} TABLE_ROWS={selectedTableRow} HEADING={heading} setSelectedTableRow={setSelectedTableRow} allConsumers= {allConsumers} allVehicles= {allVehicles} allVINS= {allVINS} allRepairs= {allRepairs}  />
         <div className="flex items-center grid grid-cols-4  overflow-hidden">
             <div className="flex items-center col-span-1 border-2 h-full relative">
                 <div>

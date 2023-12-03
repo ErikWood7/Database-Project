@@ -3,7 +3,7 @@ import { useState } from "react";
 import { postToAPI } from "../utils/postToAPI.ts";
  
  
-export default function EditTable({ TABLE_HEAD, TABLE_ROWS, HEADING, setSelectedTableRow, setOpen }: {TABLE_HEAD: any, TABLE_ROWS: any, HEADING: any, setSelectedTableRow: any, setOpen: any }) {
+export default function EditTable({ TABLE_HEAD, TABLE_ROWS, HEADING, setSelectedTableRow, setOpen, allConsumers, allVehicles, allVINS, allRepairs }: {TABLE_HEAD: any, TABLE_ROWS: any, HEADING: any, setSelectedTableRow: any, setOpen: any, allConsumers: any, allVehicles: any, allVINS: any, allRepairs: any }) {
   var new_el: any = {};
   TABLE_HEAD.forEach((head: string) => {
       if (head != "") new_el[head.toLowerCase().replaceAll(" ", "_")] = "";
@@ -107,7 +107,7 @@ export default function EditTable({ TABLE_HEAD, TABLE_ROWS, HEADING, setSelected
               url_to_post = 'updateRepair/';
           }
       // console.log(params_to_post)
-      postToAPI(url_to_post, params_to_post).then(data => {
+      postToAPI(url_to_post, params_to_post).then(() => {
               // console.log("Update");
               // console.log(data);
               setOpen(false);
@@ -121,7 +121,7 @@ export default function EditTable({ TABLE_HEAD, TABLE_ROWS, HEADING, setSelected
               setEditRow([])
               */
               window.location.reload(); 
-          }).catch(data => {
+          }).catch(() => {
               // console.log(data);
               setOpen(false);
               /*
@@ -175,7 +175,7 @@ export default function EditTable({ TABLE_HEAD, TABLE_ROWS, HEADING, setSelected
                   }
               url_to_post = 'deleteRepair/';
           }
-      postToAPI(url_to_post, params_to_post).then(data => {
+      postToAPI(url_to_post, params_to_post).then(() => {
               // console.log(data)
               TABLE_ROWS.splice(row_idx, 1);
               setSelectedTableRow([...TABLE_ROWS])
@@ -186,7 +186,7 @@ export default function EditTable({ TABLE_HEAD, TABLE_ROWS, HEADING, setSelected
 
   let table_data;
   let newRow: Boolean;
-  let tempOptions: string[];
+  let tempOptions: string[] = [];
   const colsToAvoid = ["Part Id", "Number of Vehicles to Repair", "Number of Repairs", "Repair id", "Customer", "Car"]
   const colsToSelect = ["Repair Id", "Customer", "Car", "Vin", "Owned By"]
   const colsToNotUpdate = ["Email", "VIN", "Part Id", "Vin", "Number of Vehicles to Repair", "Number of Repairs", "Owned By", "Repair Id", "Customer", "Car", "Repair id"];
@@ -217,7 +217,12 @@ export default function EditTable({ TABLE_HEAD, TABLE_ROWS, HEADING, setSelected
               if (el[head.toLowerCase().replaceAll(" ", "_")] == '') {
                       if (colsToSelect.includes(head)) { 
                           if (HEADING == "Repair Details" && (head != "Vin")) { return <td className="p-4"></td> }
-                          tempOptions = Array.from(new Set(TABLE_ROWS.map((tempRow: any) => ((tempRow[head.toLowerCase().replaceAll(" ", "_")]).toString())).filter((tempOption: string) => (typeof tempOption === 'string' && tempOption !== ''))))
+                          if (head == "Owned By" || head == "Customer") { tempOptions = allConsumers; }
+                          if (head == "Car") { tempOptions = allVehicles; }
+                          if (head == "Repair Id") { tempOptions = allRepairs; }
+                          if (head == "Vin") { tempOptions = allVINS; }
+                          console.log(allConsumers)
+                          console.log(tempOptions)
                           return <td className="p-4" key={idx+jdx}>
                                 <div className="w-full" key={idx+jdx}>
                                     <select onChange={(e)=>{changeElementToAdd(e.target.value, head.toLowerCase().replaceAll(" ", "_"))}} key={idx+jdx} id={head} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
