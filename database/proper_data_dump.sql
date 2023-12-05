@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS inventory_management;
+USE inventory_management;
 -- MySQL dump 10.19  Distrib 10.3.28-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: kchauhan
@@ -54,7 +56,9 @@ CREATE TABLE `Vehicle` (
   `Make` varchar(255) NOT NULL,
   `Model` varchar(255) NOT NULL,
   `Paint_Code` varchar(255) NOT NULL,
-  `Customer_email` varchar(255) DEFAULT NULL,
+  `Customer_email` varchar(255) DEFAULT NULL REFERENCES Customer(`Customer_email`)
+	   ON DELETE CASCADE
+       ON UPDATE CASCADE,
   PRIMARY KEY (`VIN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -80,7 +84,9 @@ CREATE TABLE `Repair` (
   `Repair_id` int(11) NOT NULL AUTO_INCREMENT,
   `Repair_detail` varchar(255) NOT NULL,
   `Note` varchar(255) DEFAULT NULL,
-  `VIN` varchar(255) DEFAULT NULL,
+  `VIN` varchar(255) DEFAULT NULL REFERENCES Vehicle(`VIN`)
+	   ON DELETE CASCADE
+       ON UPDATE CASCADE,
   PRIMARY KEY (`Repair_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -106,7 +112,9 @@ CREATE TABLE `Part` (
   `Part_id` int(11) NOT NULL AUTO_INCREMENT,
   `Part_detail` varchar(255) NOT NULL,
   `OrderStatus` varchar(255) NOT NULL,
-  `Repair_id` int(11) DEFAULT NULL,
+  `Repair_id` int(11) DEFAULT NULL REFERENCES Repair(Repair_id)
+	   ON DELETE CASCADE
+       ON UPDATE CASCADE,
   PRIMARY KEY (`Part_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
