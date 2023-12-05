@@ -36,7 +36,7 @@ function Login({ setLoginInfo }: { setLoginInfo: React.Dispatch<React.SetStateAc
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
                         className="mx-auto h-auto w-auto relative bottom-20"
-                        src="https://i.ibb.co/4TbbVBw/Can-1-removebg-preview.png"
+                        src={"/Can-1-removebg-preview_login.png"}
                         alt="Inventory Management"
                     />
                     <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 relative bottom-40">

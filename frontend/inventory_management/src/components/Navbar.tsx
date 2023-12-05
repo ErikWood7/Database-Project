@@ -48,7 +48,7 @@ function Navbar({ loginInfo }: { loginInfo: UserLogin | null }) {
                       <Link to='/'>
                       <img
                         className="h-28 w-auto"
-                        src="https://i.ibb.co/4TbbVBw/Can-1-removebg-preview.png"
+                        src={"/Can-1-removebg-preview_nav.png"}
                         alt="Connections"
                       />
                       </Link>
